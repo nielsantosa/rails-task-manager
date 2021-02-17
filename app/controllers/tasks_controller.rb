@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
     @task = Task.new(strong_params)
     if @task.save!
-      redirect_to tasks_show_path(@task.id)
+      redirect_to task_path(@task.id)
     end
   end
 
@@ -30,11 +30,11 @@ class TasksController < ApplicationController
     strong_params = params.require(:task).permit(:title, :details, :completed)
 
     if @task.update(strong_params)
-      redirect_to tasks_show_path(@task.id)
+      redirect_to task_path(@task.id)
     end
   end
 
-  def delete
+  def destroy
     @task = Task.find(params[:id])
     if @task.destroy
       redirect_to tasks_path
